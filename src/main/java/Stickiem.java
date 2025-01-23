@@ -43,9 +43,33 @@ public class Stickiem {
                 }
             } else {
 
-                Task newItem = new Task(userInput);
-                storage.add(newItem);
-                output = "added: " + userInput;
+                if(userInput.contains("todo")) {
+                    String name = userInput.replace("todo","");
+                    ToDo newItem = new ToDo(name);
+                    storage.add(newItem);
+                } else if(userInput.contains("deadline")) {
+                    String name = userInput.replace("deadline","");
+                    int index = name.indexOf("/by");
+                    String date = name.substring(index + 3);
+                    name = name.substring(0, index);
+
+                    Deadline newItem = new Deadline(name, date);
+                    storage.add(newItem);
+                } else {
+                    String name = userInput.replace("event","");
+                    int indexFrom = name.indexOf("/from");
+                    int indexTo = name.indexOf("/to");
+                    String startDate = name.substring(indexFrom + 5, indexTo);
+                    String endDate = name.substring(indexTo + 3);
+                    name = name.substring(0, indexFrom);
+
+                    Event newItem = new Event(name, startDate, endDate);
+                    storage.add(newItem);
+                }
+                int len = storage.size();
+
+                output = "Got it. I've added this task: \n" + storage.get(len - 1).getDetails();
+                output += "\nNow you have " + len + " tasks in the list.";
             }
             output += "\n____________________________________________________________";
             System.out.println(output);
