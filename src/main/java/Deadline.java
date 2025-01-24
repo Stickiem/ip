@@ -10,4 +10,9 @@ public class Deadline extends Task {
         String marking = status ? "X" : " ";
         return "[D][" + marking + "] " + name + "(by:"+ endDate + ")";
     }
+
+    @Override
+    public String getType() {
+        return "deadline";
+    }
 }

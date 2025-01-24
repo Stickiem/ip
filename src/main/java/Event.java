@@ -14,4 +14,9 @@ public class Event extends Task {
         String marking = status ? "X" : " ";
         return "[E][" + marking + "] " + name + "(from:"+ startDate + "to:" + endDate + ")";
     }
+
+    @Override
+    public String getType() {
+        return "event";
+    }
 }

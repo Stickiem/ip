@@ -20,4 +20,8 @@ public class Task {
         String marking = status ? "X" : " ";
         return "[" + marking + "] " + name;
     }
+
+    public String getType() {
+        return null;
+    }
 }
