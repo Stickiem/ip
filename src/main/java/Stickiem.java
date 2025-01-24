@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,16 +12,16 @@ public class Stickiem {
         System.out.println(output);
         Scanner input = new Scanner(System.in);
         List<Task> storage = new ArrayList<Task>();
-        while(true) {
+        while (true) {
             output = "";
             String userInput = input.nextLine();
-            if(userInput.equals("bye")) {
+            if (userInput.equals("bye")) {
                 break;
 
-            } else if(userInput.contains("mark")) {
+            } else if (userInput.contains("mark")) {
                 String[] details = userInput.split(" ");
                 Task currentTask = storage.get(Integer.parseInt(details[1]) - 1);
-                if(userInput.contains("unmark")) {
+                if (userInput.contains("unmark")) {
                     currentTask.unmarkStatus();
                     output += "OK, I've marked this task as not done yet:";
 
@@ -31,45 +32,28 @@ public class Stickiem {
                 output += "\n" + currentTask.getDetails();
 
 
-
-            }  else if(userInput.equals("list")) {
+            } else if (userInput.equals("list")) {
                 int len = storage.size();
 
-                for(int i = 0; i < len; i++) {
+                for (int i = 0; i < len; i++) {
                     int index = i + 1;
                     Task currentTask = storage.get(i);
-                    output += "\n" + index + "."  + currentTask.getDetails();
+                    output += "\n" + index + "." + currentTask.getDetails();
 
                 }
             } else {
+                try {
+                    Task currentTask = createTask(userInput);
+                    checkTask(currentTask, currentTask.getType());
+                    storage.add(currentTask);
+                    int len = storage.size();
 
-                if(userInput.contains("todo")) {
-                    String name = userInput.replace("todo","");
-                    ToDo newItem = new ToDo(name);
-                    storage.add(newItem);
-                } else if(userInput.contains("deadline")) {
-                    String name = userInput.replace("deadline","");
-                    int index = name.indexOf("/by");
-                    String date = name.substring(index + 3);
-                    name = name.substring(0, index);
-
-                    Deadline newItem = new Deadline(name, date);
-                    storage.add(newItem);
-                } else {
-                    String name = userInput.replace("event","");
-                    int indexFrom = name.indexOf("/from");
-                    int indexTo = name.indexOf("/to");
-                    String startDate = name.substring(indexFrom + 5, indexTo);
-                    String endDate = name.substring(indexTo + 3);
-                    name = name.substring(0, indexFrom);
-
-                    Event newItem = new Event(name, startDate, endDate);
-                    storage.add(newItem);
+                    output = "Got it. I've added this task: \n" + storage.get(len - 1).getDetails();
+                    output += "\nNow you have " + len + " tasks in the list.";
+                } catch (StickiemCommandException e) {
+                    System.out.println(e.getMessage());
                 }
-                int len = storage.size();
 
-                output = "Got it. I've added this task: \n" + storage.get(len - 1).getDetails();
-                output += "\nNow you have " + len + " tasks in the list.";
             }
             output += "\n____________________________________________________________";
             System.out.println(output);
@@ -79,4 +63,48 @@ public class Stickiem {
         System.out.println(output);
 
     }
+
+    public static Task createTask(String userInput) throws StickiemCommandException {
+
+
+        if (userInput.contains("todo")) {
+            String name = userInput.replace("todo", "");
+            ToDo newItem = new ToDo(name);
+            return newItem;
+        } else if (userInput.contains("deadline")) {
+            String name = userInput.replace("deadline", "");
+
+            int index = name.indexOf("/by");
+            String date = name.substring(index + 3);
+            name = name.substring(0, index);
+
+            Deadline newItem = new Deadline(name, date);
+            return newItem;
+        } else if (userInput.contains("event")) {
+            String name = userInput.replace("event", "");
+            int indexFrom = name.indexOf("/from");
+            int indexTo = name.indexOf("/to");
+            String startDate = name.substring(indexFrom + 5, indexTo);
+            String endDate = name.substring(indexTo + 3);
+            name = name.substring(0, indexFrom);
+
+            Event newItem = new Event(name, startDate, endDate);
+            return newItem;
+        } else {
+            throw new StickiemCommandException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+        }
+
+
+    }
+
+    public static void checkTask(Task t, String type) throws StickiemCommandException {
+        if(t.getName().isEmpty()) {
+            throw new StickiemCommandException("OOPS!!! The description of a " + type + " cannot be empty");
+        }
+    }
+
+
+
+
+
 }
