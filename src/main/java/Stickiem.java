@@ -51,8 +51,8 @@ public class Stickiem {
                 }
             } else {
                 try {
+                    checkCommand(userInput);
                     Task currentTask = createTask(userInput);
-                    checkTask(currentTask, currentTask.getType());
                     storage.add(currentTask);
                     int len = storage.size();
 
@@ -105,9 +105,18 @@ public class Stickiem {
 
     }
 
-    public static void checkTask(Task t, String type) throws StickiemCommandException {
-        if(t.getName().isEmpty()) {
-            throw new StickiemCommandException("OOPS!!! The description of a " + type + " cannot be empty");
+    public static void checkCommand(String userInput) throws StickiemCommandException {
+        if(userInput.isEmpty()) {
+            throw new StickiemCommandException("Ehhh, no input detected");
+        } else{
+            List<String> types = Arrays.asList("todo", "deadline", "event");
+            for(int i = 0; i<types.size(); i++){
+                String check = userInput.replace(types.get(i), "");
+                if(check.isEmpty()) {
+                    throw new StickiemCommandException("OOPS!!! The description of a " + types.get(i) + " cannot be empty");
+                }
+            }
+
         }
     }
 
