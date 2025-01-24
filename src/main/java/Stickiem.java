@@ -32,6 +32,14 @@ public class Stickiem {
                 output += "\n" + currentTask.getDetails();
 
 
+            } else if(userInput.contains("delete")) {
+                String[] details = userInput.split(" ");
+                Task currentTask = storage.get(Integer.parseInt(details[1]) - 1);
+
+                output = "Noted. I've removed this task:" + currentTask.getDetails();
+                storage.remove(currentTask);
+                output += "\nNow you have " + storage.size() + " tasks in the list.";
+
             } else if (userInput.equals("list")) {
                 int len = storage.size();
 
