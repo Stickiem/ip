@@ -25,6 +25,7 @@ public class Deadline extends Task {
     public String getCommand() {
         String marking = isDone ? "X" : "";
         return marking + " " + this.getType() + " " + this.name + "/by " + this.endDate.toString();
+        
     }
 
 }
