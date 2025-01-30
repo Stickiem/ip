@@ -1,14 +1,19 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
-    private String endDate;
+    private LocalDate endDate;
+
     public Deadline(String name, String endDate, boolean status) {
         super(name, status);
-        this.endDate = endDate;
+        endDate = endDate.trim();
+        this.endDate = LocalDate.parse(endDate);
     }
 
     @Override
     public String getDetails() {
-        String marking = status ? "X" : " ";
-        return "[D][" + marking + "] " + name + "(by:"+ endDate + ")";
+        String marking = this.isDone ? "X" : " ";
+        return "[D][" + marking + "] " + this.name + "(by: "+ this.endDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
     @Override
@@ -18,8 +23,8 @@ public class Deadline extends Task {
 
     @Override
     public String getCommand() {
-        String marking = status ? "X" : "";
-        return marking + " " + this.getType() + " " + name + "/by" + endDate;
+        String marking = isDone ? "X" : "";
+        return marking + " " + this.getType() + " " + this.name + "/by " + this.endDate.toString();
     }
 
 }

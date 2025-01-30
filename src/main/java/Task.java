@@ -1,23 +1,23 @@
 public class Task {
     public String name;
-    public boolean status;
+    public boolean isDone;
 
-    public Task(String name, boolean status) {
+    public Task(String name, boolean isDone) {
         this.name = name;
-        this.status = status;
+        this.isDone = isDone;
     }
     public String getName() {
         return this.name;
     }
     public void unmarkStatus() {
-        this.status = false;
+        this.isDone = false;
     }
 
     public void markStatus() {
-        this.status = true;
+        this.isDone = true;
     }
     public String getDetails() {
-        String marking = status ? "X" : " ";
+        String marking = isDone ? "X" : " ";
         return "[" + marking + "] " + name;
     }
 

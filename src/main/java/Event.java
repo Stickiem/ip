@@ -1,18 +1,25 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
-    private String startDate;
-    private String endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     private String deadline;
     public Event(String name, String startDate, String endDate, boolean status) {
         super(name, status);
-        this.startDate = startDate;
-        this.endDate = endDate;
+        startDate = startDate.trim();
+        endDate = endDate.trim();
+        this.startDate = LocalDate.parse(startDate);
+        this.endDate = LocalDate.parse(endDate);
     }
 
     @Override
     public String getDetails() {
-        String marking = status ? "X" : " ";
-        return "[E][" + marking + "] " + name + "(from:"+ startDate + "to:" + endDate + ")";
+        String marking = this.isDone ? "X" : " ";
+        return "[E][" + marking + "] " + this.name + "(from: "
+                + this.startDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))
+                + " to: " + this.endDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
     @Override
@@ -22,7 +29,7 @@ public class Event extends Task {
 
     @Override
     public String getCommand() {
-        String marking = status ? "X" : "";
-        return marking + " " + this.getType() + " " + name + "/from" + startDate + "/to" + endDate;
+        String marking = isDone ? "X" : "";
+        return marking + " " + this.getType() + " " + name + "/from " + startDate + " /to " + endDate;
     }
 }

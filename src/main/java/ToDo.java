@@ -6,7 +6,7 @@ public class ToDo extends Task {
 
     @Override
     public String getDetails() {
-        String marking = status ? "X" : " ";
+        String marking = isDone ? "X" : " ";
         return "[T][" + marking + "] " + name;
     }
 
@@ -17,7 +17,7 @@ public class ToDo extends Task {
 
     @Override
     public String getCommand() {
-        String marking = status ? "X" : "";
+        String marking = isDone ? "X" : "";
         return marking + " " + this.getType() + " " + name;
     }
 }
