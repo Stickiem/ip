@@ -1,7 +1,7 @@
 public class Deadline extends Task {
     private String endDate;
-    public Deadline(String name, String endDate) {
-        super(name);
+    public Deadline(String name, String endDate, boolean status) {
+        super(name, status);
         this.endDate = endDate;
     }
 
@@ -15,4 +15,11 @@ public class Deadline extends Task {
     public String getType() {
         return "deadline";
     }
+
+    @Override
+    public String getCommand() {
+        String marking = status ? "X" : "";
+        return marking + " " + this.getType() + " " + name + "/by" + endDate;
+    }
+
 }

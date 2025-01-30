@@ -2,9 +2,9 @@ public class Task {
     public String name;
     public boolean status;
 
-    public Task(String name) {
+    public Task(String name, boolean status) {
         this.name = name;
-        this.status = false;
+        this.status = status;
     }
     public String getName() {
         return this.name;
@@ -22,6 +22,10 @@ public class Task {
     }
 
     public String getType() {
+        return null;
+    }
+
+    public String getCommand() {
         return null;
     }
 }

@@ -1,7 +1,7 @@
 public class ToDo extends Task {
 
-    public ToDo(String name) {
-        super(name);
+    public ToDo(String name, boolean status) {
+        super(name, status);
     }
 
     @Override
@@ -13,5 +13,11 @@ public class ToDo extends Task {
     @Override
     public String getType() {
         return "todo";
+    }
+
+    @Override
+    public String getCommand() {
+        String marking = status ? "X" : "";
+        return marking + " " + this.getType() + " " + name;
     }
 }
