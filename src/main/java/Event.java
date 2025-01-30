@@ -3,8 +3,8 @@ public class Event extends Task {
     private String endDate;
 
     private String deadline;
-    public Event(String name, String startDate, String endDate) {
-        super(name);
+    public Event(String name, String startDate, String endDate, boolean status) {
+        super(name, status);
         this.startDate = startDate;
         this.endDate = endDate;
     }
@@ -18,5 +18,11 @@ public class Event extends Task {
     @Override
     public String getType() {
         return "event";
+    }
+
+    @Override
+    public String getCommand() {
+        String marking = status ? "X" : "";
+        return marking + " " + this.getType() + " " + name + "/from" + startDate + "/to" + endDate;
     }
 }
