@@ -1,3 +1,5 @@
+package Stickiem;
+
 import java.util.Scanner;
 
 public class Ui {

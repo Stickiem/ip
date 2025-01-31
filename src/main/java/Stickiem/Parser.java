@@ -1,3 +1,5 @@
+package Stickiem;
+
 public class Parser {
 
 

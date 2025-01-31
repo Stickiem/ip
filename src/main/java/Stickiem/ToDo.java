@@ -1,3 +1,5 @@
+package Stickiem;
+
 public class ToDo extends Task {
 
     public ToDo(String name, boolean status) {
