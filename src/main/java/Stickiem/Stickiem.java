@@ -176,16 +176,16 @@ public static void main(String[] args) {
     }
 */
 public static Task createTask(String userInput) throws StickiemCommandException {
-    boolean markings = false;
+    boolean isMarkeed = false;
     if(userInput.charAt(0) == 'X') {
-        markings = true;
+        isMarkeed = true;
     }
 
     if (userInput.contains("todo")) {
         //String name = userInput.replace("todo", "");
         String name = userInput.substring(userInput.indexOf("todo") + 5);
 
-        ToDo newItem = new ToDo(name, markings);
+        ToDo newItem = new ToDo(name, isMarkeed);
         return newItem;
     } else if (userInput.contains("deadline")) {
         //String name = userInput.replace("deadline", "");
@@ -195,7 +195,7 @@ public static Task createTask(String userInput) throws StickiemCommandException 
         String date = name.substring(index + 3);
         name = name.substring(0, index);
 
-        Deadline newItem = new Deadline(name, date, markings);
+        Deadline newItem = new Deadline(name, date, isMarkeed);
         return newItem;
     } else if (userInput.contains("event")) {
         //String name = userInput.replace("event", "");
@@ -206,7 +206,7 @@ public static Task createTask(String userInput) throws StickiemCommandException 
         String endDate = name.substring(indexTo + 3);
         name = name.substring(0, indexFrom);
 
-        Event newItem = new Event(name, startDate, endDate, markings);
+        Event newItem = new Event(name, startDate, endDate, isMarkeed);
         return newItem;
     } else {
         throw new StickiemCommandException("OOPS!!! I'm sorry, but I don't know what that means :-(");
