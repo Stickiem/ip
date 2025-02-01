@@ -1,5 +1,5 @@
 package Stickiem;
-import java.util.ArrayList;
+
 
 public class Task {
     public String name;
@@ -25,10 +25,12 @@ public class Task {
     }
 
     public String getType() {
+
         return null;
     }
 
     public String getCommand() {
+
         return null;
     }
 

@@ -1,15 +1,23 @@
 package Stickiem;
+/**
+ * The main program for the chatbot to run.
+ */
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class Stickiem {
     private Ui ui;
     private Save save;
     private TaskList taskList;
 
+    /**
+     * Sets up Stickiem chatbot.
+     * Loads saved data if any.
+     *
+     * @param filePath location of file storage
+     */
     public Stickiem(String filePath) {
         this.ui = new Ui();
         this.save = new Save(filePath);
@@ -26,6 +34,9 @@ public class Stickiem {
 
     }
 
+    /**
+     *Runs the Stickiem chatbot
+     */
     public void run() {
         while(this.ui.getActivity()) {
             String userInput = this.ui.getUserInput();
@@ -183,7 +194,15 @@ public static void main(String[] args) {
 
     }
 */
-public static Task createTask(String userInput) throws StickiemCommandException {
+
+    /**
+     * Returns the task created based on the user input.
+     *
+     * @param userInput command given by the user.
+     * @return newItem task generated.
+     * @throws StickiemCommandException if command does not exists.
+     */
+    public static Task createTask(String userInput) throws StickiemCommandException {
     boolean markings = false;
     if(userInput.charAt(0) == 'X') {
         markings = true;
