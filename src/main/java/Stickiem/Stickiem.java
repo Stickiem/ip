@@ -194,7 +194,6 @@ public static void main(String[] args) {
 
     }
 */
-
     /**
      * Returns the task created based on the user input.
      *
@@ -202,17 +201,18 @@ public static void main(String[] args) {
      * @return newItem task generated.
      * @throws StickiemCommandException if command does not exists.
      */
-    public static Task createTask(String userInput) throws StickiemCommandException {
-    boolean markings = false;
+
+public static Task createTask(String userInput) throws StickiemCommandException {
+    boolean isMarked = false;
     if(userInput.charAt(0) == 'X') {
-        markings = true;
+        isMarked = true;
     }
 
     if (userInput.contains("todo")) {
         //String name = userInput.replace("todo", "");
         String name = userInput.substring(userInput.indexOf("todo") + 5);
 
-        ToDo newItem = new ToDo(name, markings);
+        ToDo newItem = new ToDo(name, isMarked);
         return newItem;
     } else if (userInput.contains("deadline")) {
         //String name = userInput.replace("deadline", "");
@@ -222,7 +222,7 @@ public static void main(String[] args) {
         String date = name.substring(index + 3);
         name = name.substring(0, index);
 
-        Deadline newItem = new Deadline(name, date, markings);
+        Deadline newItem = new Deadline(name, date, isMarked);
         return newItem;
     } else if (userInput.contains("event")) {
         //String name = userInput.replace("event", "");
@@ -233,7 +233,7 @@ public static void main(String[] args) {
         String endDate = name.substring(indexTo + 3);
         name = name.substring(0, indexFrom);
 
-        Event newItem = new Event(name, startDate, endDate, markings);
+        Event newItem = new Event(name, startDate, endDate, isMarked);
         return newItem;
     } else {
         throw new StickiemCommandException("OOPS!!! I'm sorry, but I don't know what that means :-(");
