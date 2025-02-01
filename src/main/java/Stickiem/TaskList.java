@@ -5,7 +5,13 @@ import java.util.ArrayList;
 public class TaskList {
     private ArrayList<Task> tasks;
     public TaskList() {
+
         this.tasks = new ArrayList<Task>();
+    }
+
+    public TaskList(ArrayList<Task> tasks) {
+
+        this.tasks = tasks;
     }
 
     public String addTask(Task task) {
@@ -43,7 +49,18 @@ public class TaskList {
     }
 
     public Task getTask(int index) {
+
         return this.tasks.get(index);
+    }
+
+    public ArrayList<Task> getTasks(String keyword) {
+        ArrayList<Task> tasks = new ArrayList<Task>();
+        for(Task task : this.tasks) {
+            if(task.getName().contains(keyword)) {
+                tasks.add(task);
+            }
+        }
+        return tasks;
     }
 
     public ArrayList<String> convertCommand() {

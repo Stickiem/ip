@@ -74,6 +74,14 @@ public class Stickiem {
                     System.out.println(e.getMessage());
                 }
 
+            } else if (type.equals("find")) {
+                int index = userInput.indexOf("find");
+                String keyword = userInput.substring(index + 5);
+
+
+                this.ui.printOutput("Here are the matching tasks in your list:" + new TaskList(taskList.getTasks(keyword)).getTaskDetails());
+
+
             } else {
                 ui.printOutput("Invalid command");
             }
