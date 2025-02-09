@@ -31,6 +31,7 @@ public class Ui {
         this.isActive = false;
     }
 
+
     public boolean getActivity() {
         return this.isActive;
     }
