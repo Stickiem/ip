@@ -37,9 +37,9 @@ public class Stickiem {
     /**
      *Runs the Stickiem chatbot
      */
-    public void run() {
+    public String run(String userInput) {
         while(this.ui.getActivity()) {
-            String userInput = this.ui.getUserInput();
+            //String userInput = this.ui.getUserInput();
             String type = Parser.parse(userInput);
             try {
                 checkCommand(userInput);
@@ -49,8 +49,9 @@ public class Stickiem {
             }
             if(type.equals("bye")) {
                 ui.exit();
+                return "bye";
             } else if (type.equals("list")) {
-                this.ui.printOutput(this.taskList.getTaskDetails());
+                return this.taskList.getTaskDetails();
             } else if (type.equals("mark")) {
                 String output = "";
                 String[] details = userInput.split(" ");
@@ -65,21 +66,21 @@ public class Stickiem {
                     output += "Nice! I've marked this task as done:";
                 }
                 this.save.save(this.taskList.convertCommand());
-                this.ui.printOutput(output + "\n" + currentTask.getDetails());
+                return output + "\n" + currentTask.getDetails();
             } else if (type.equals("delete")) {
                 String[] details = userInput.split(" ");
                 int index = Integer.parseInt(details[1]) - 1;
                 String output = this.taskList.removeTask(index);
                 this.save.save(this.taskList.convertCommand());
 
-                this.ui.printOutput(output);
+                return output;
             } else if (type.equals("add")) {
                 try {
                     Task currentTask = createTask(userInput);
                     String output = taskList.addTask(currentTask);
                     this.save.save(this.taskList.convertCommand());
 
-                    this.ui.printOutput(output);
+                    return output;
 
                 } catch (StickiemCommandException e) {
                     System.out.println(e.getMessage());
@@ -90,14 +91,15 @@ public class Stickiem {
                 String keyword = userInput.substring(index + 5);
 
 
-                this.ui.printOutput("Here are the matching tasks in your list:" + new TaskList(taskList.getTasks(keyword)).getTaskDetails());
+                return "Here are the matching tasks in your list:" + new TaskList(taskList.getTasks(keyword)).getTaskDetails();
 
 
             } else {
-                ui.printOutput("Invalid command");
+                return "Invalid command";
             }
 
         }
+        return "hmm";
     }
 
 
@@ -105,7 +107,7 @@ public class Stickiem {
 
 
 public static void main(String[] args) {
-    new Stickiem("stickiem.txt").run();
+    //new Stickiem("stickiem.txt").run();
 }
 /*
     public static void main(String[] args) {
