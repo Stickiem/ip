@@ -22,8 +22,8 @@ public class MainWindow extends AnchorPane {
 
     private Stickiem duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Stickiem.png"));
 
     @FXML
     public void initialize() {
