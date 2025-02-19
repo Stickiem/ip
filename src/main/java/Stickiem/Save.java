@@ -23,6 +23,7 @@ public class Save {
             System.out.println("Something went wrong: " + e.getMessage());
         }
 
+        assert file.exists();
 
 
 
