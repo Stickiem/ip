@@ -23,12 +23,14 @@ public class Save {
             System.out.println("Something went wrong: " + e.getMessage());
         }
 
+        assert file.exists();
 
 
 
     }
 
     public void save(ArrayList<String> details) {
+        assert file.exists();
         try {
 
             FileWriter fw = new FileWriter(file);
