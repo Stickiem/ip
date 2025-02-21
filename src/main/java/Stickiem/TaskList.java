@@ -30,8 +30,19 @@ public class TaskList {
         return output;
     }
 
-    public int getTaskIndex(Task task) {
-        return this.tasks.indexOf(task);
+    public String getUnmarked() {
+        int len = tasks.size();
+
+        String output = "";
+        for (int i = 0; i < len; i++) {
+            int index = i + 1;
+            Task currentTask = tasks.get(i);
+            if(currentTask.getMarkStatus() == false) {
+                output += "\n" + index + "." + currentTask.getDetails();
+            }
+
+        }
+        return output;
     }
 
     public String getTaskDetails() {

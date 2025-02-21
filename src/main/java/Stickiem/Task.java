@@ -30,8 +30,11 @@ public class Task {
     }
 
     public String getCommand() {
-
         return null;
+    }
+
+    public boolean getMarkStatus() {
+        return this.isDone;
     }
 
 

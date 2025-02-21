@@ -26,6 +26,8 @@ public class Parser {
             type = "add";
         } else if(command.contains("find")) {
             type = "find";
+        } else if(command.contains("reminder")) {
+            type = "remind";
         }
 
         return type;

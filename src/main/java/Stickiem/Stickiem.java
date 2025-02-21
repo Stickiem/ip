@@ -101,6 +101,9 @@ public class Stickiem {
 
 
             }
+            case "remind" -> {
+                return "Here are some of your uncompleted tasks reminders:" + taskList.getUnmarked();
+            }
             default -> {
                 return "Invalid command";
             }
