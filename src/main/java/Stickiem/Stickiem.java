@@ -47,12 +47,16 @@ public class Stickiem {
                 System.out.println(e.getMessage());
                 continue;
             }
-            if(type.equals("bye")) {
+
+            switch (type) {
+            case "bye" -> {
                 ui.exit();
                 return "bye";
-            } else if (type.equals("list")) {
+            }
+            case "list" -> {
                 return this.taskList.getTaskDetails();
-            } else if (type.equals("mark")) {
+            }
+            case "mark" -> {
                 String output = "";
                 String[] details = userInput.split(" ");
                 int index = Integer.parseInt(details[1]) - 1;
@@ -67,14 +71,16 @@ public class Stickiem {
                 }
                 this.save.save(this.taskList.convertCommand());
                 return output + "\n" + currentTask.getDetails();
-            } else if (type.equals("delete")) {
+            }
+            case "delete" -> {
                 String[] details = userInput.split(" ");
                 int index = Integer.parseInt(details[1]) - 1;
                 String output = this.taskList.removeTask(index);
                 this.save.save(this.taskList.convertCommand());
 
                 return output;
-            } else if (type.equals("add")) {
+            }
+            case "add" -> {
                 try {
                     Task currentTask = createTask(userInput);
                     String output = taskList.addTask(currentTask);
@@ -85,8 +91,8 @@ public class Stickiem {
                 } catch (StickiemCommandException e) {
                     System.out.println(e.getMessage());
                 }
-
-            } else if (type.equals("find")) {
+            }
+            case "find" -> {
                 int index = userInput.indexOf("find");
                 String keyword = userInput.substring(index + 5);
 
@@ -94,8 +100,10 @@ public class Stickiem {
                 return "Here are the matching tasks in your list:" + new TaskList(taskList.getTasks(keyword)).getTaskDetails();
 
 
-            } else {
+            }
+            default -> {
                 return "Invalid command";
+            }
             }
 
         }
