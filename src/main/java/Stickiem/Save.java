@@ -30,6 +30,7 @@ public class Save {
     }
 
     public void save(ArrayList<String> details) {
+        assert file.exists();
         try {
 
             FileWriter fw = new FileWriter(file);

@@ -36,24 +36,5 @@ public class Ui {
         return this.isActive;
     }
 
-    /**
-     * Takes in user's command
-     *
-     * @return this.scanner.nextLine() user input
-     */
-    public String getUserInput() {
-        return this.scanner.nextLine();
-    }
 
-    /**
-     * Displays output to user.
-     *
-     * @param response output based on user command.
-     */
-    public void printOutput(String response) {
-        this.output = "____________________________________________________________\n";;
-        this.output += response;
-        this.output += "\n____________________________________________________________";;
-        System.out.println(output);
-    }
 }
