@@ -3,6 +3,9 @@ package stickiem;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents task with deadlines.
+ */
 public class Deadline extends Task {
     private LocalDate endDate;
 

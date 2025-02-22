@@ -1,6 +1,8 @@
 package stickiem;
 
-
+/**
+ * Represents generic task.
+ */
 public class Task {
     public String name;
     public boolean isDone;
@@ -19,6 +21,7 @@ public class Task {
     public void markStatus() {
         this.isDone = true;
     }
+
     public String getDetails() {
         String marking = isDone ? "X" : " ";
         return "[" + marking + "] " + name;

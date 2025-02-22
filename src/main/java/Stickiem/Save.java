@@ -7,6 +7,9 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Deals with memory.
+ */
 public class Save {
     private File file;
 
