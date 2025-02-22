@@ -1,40 +1,69 @@
-package Stickiem;
+package stickiem;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
 /**
  * Deals with the interaction between user.
  */
 
-import java.util.Scanner;
 
-public class Ui {
-    private Scanner scanner;
-    private String output;
-    private boolean isActive;
+public class Ui extends AnchorPane{
+    @FXML
+    private ScrollPane scrollPane;
+    @FXML
+    private VBox dialogContainer;
+    @FXML
+    private TextField userInput;
+    @FXML
+    private Button sendButton;
 
-    /**
-     * Sets up the Ui and welcome message.
-     */
-    public Ui() {
-        this.scanner = new Scanner(System.in);
-        this.isActive = true;
-        this.output = "____________________________________________________________";
-        this.output += "\nHello! I'm Stickiem!\nWhat can I do for you?";
-        this.output += "\n____________________________________________________________";
-        System.out.println(output);
+    private Stickiem duke;
+
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Stickiem.png"));
+
+    @FXML
+    public void initialize() {
+
+        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        String welcome = "Hello! I'm Stickiem! What can I do for you?";
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(welcome, dukeImage));
+    }
+
+    /** Injects the Stickiem instance */
+    public void setDuke(Stickiem d) {
+
+        duke = d;
     }
 
     /**
-     * Close the active status of the Ui.
-     * Prints "bye".
+     * Creates two dialog boxes, one echoing user input and the other containing Stickiem's reply and then appends them to
+     * the dialog container. Clears the user input after processing.
      */
-    public void exit() {
-        this.output = "bye";
-        this.isActive = false;
+    @FXML
+    private void handleUserInput() {
+        String input = userInput.getText();
+        String response = duke.run(input);
+
+        if(input.equals("bye")) {
+            Stage stage = (Stage) scrollPane.getScene().getWindow();
+            stage.close();
+        }
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(input, userImage),
+                DialogBox.getDukeDialog(response, dukeImage)
+        );
+        userInput.clear();
     }
 
 
-    public boolean getActivity() {
-        return this.isActive;
-    }
 
 
 }

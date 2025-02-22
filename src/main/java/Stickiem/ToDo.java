@@ -1,4 +1,4 @@
-package Stickiem;
+package stickiem;
 
 public class ToDo extends Task {
 

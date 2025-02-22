@@ -1,4 +1,4 @@
-package Stickiem;
+package stickiem;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,10 +9,8 @@ import java.util.Scanner;
 
 public class Save {
     private File file;
-    //private String filePath;
 
     public Save(String filePath) {
-        //this.filePath = filePath;
 
         this.file = new File(filePath);
         try {

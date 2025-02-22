@@ -1,4 +1,4 @@
-package Stickiem;
+package stickiem;
 
 import org.junit.jupiter.api.Test;
 

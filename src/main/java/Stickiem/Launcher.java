@@ -1,4 +1,4 @@
-package Stickiem;
+package stickiem;
 
 import javafx.application.Application;
 public class Launcher {

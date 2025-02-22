@@ -1,4 +1,4 @@
-package Stickiem;
+package stickiem;
 
 import java.util.ArrayList;
 

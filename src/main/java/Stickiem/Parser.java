@@ -1,4 +1,4 @@
-package Stickiem;
+package stickiem;
 
 /**
  * Deals with making sense of the user command
