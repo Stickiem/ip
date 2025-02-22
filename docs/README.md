@@ -11,7 +11,7 @@ Command: `todo [TASK NAME]`
 
 Example: `todo read book`
 
-Outcome:
+Outcome:\
 ![./images/img.png](./images/img.png)
 
 ## Adding Deadlines
@@ -21,7 +21,7 @@ Command: `deadline [TASK NAME] /by [DATE]`
 
 Example: `deadline read book /by 2001-01-01`
 
-Outcome:
+Outcome:\
 ![./images/img_1.png](./images/img_1.png)
 
 ## Adding Events
@@ -31,7 +31,7 @@ Command: `event [TASK NAME] /from [DATE] /to [DATE]`
 
 Example: `event read book /from 2001-01-01 /to 2001-02-02`
 
-Outcome:
+Outcome:\
 ![./images/img_2.png](./images/img_2.png)
 
 ## List tasks
@@ -41,7 +41,7 @@ Command: `list`
 
 Example: `list`
 
-Outcome:
+Outcome:\
 ![./images/img_3.png](./images/img_3.png)
 
 ## Delete tasks
@@ -51,7 +51,7 @@ Command: `delete [LIST NUMBER]`
 
 Example: `delete 1`
 
-Outcome:
+Outcome:\
 ![./images/img_4.png](./images/img_4.png)
 
 ## Mark tasks
@@ -61,7 +61,7 @@ Command: `mark [LIST NUMBER]`
 
 Example: `mark 1`
 
-Outcome:
+Outcome:\
 ![./images/img_5.png](./images/img_5.png)
 
 ## Unmark tasks
@@ -71,7 +71,7 @@ Command: `unmark [LIST NUMBER]`
 
 Example: `unmark 1`
 
-Outcome:
+Outcome:\
 ![./images/img_6.png](./images/img_6.png)
 
 ## Find tasks
@@ -81,7 +81,7 @@ Command: `find [KEYWORD]`
 
 Example: `find read`
 
-Outcome:
+Outcome:\
 ![./images/img_7.png](./images/img_7.png)
 
 ## Reminder for tasks
@@ -91,7 +91,7 @@ Command: `reminder`
 
 Example: `reminder`
 
-Outcome:
+Outcome:\
 ![./images/img_8.png](./images/img_8.png)
 
 ## Exit application
@@ -101,7 +101,7 @@ Command: `bye`
 
 Example: `bye`
 
-Outcome:
+Outcome:\
 ``Application closes``
 
 
