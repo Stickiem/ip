@@ -36,75 +36,79 @@ public class Stickiem {
      * Returns response from Stickiem.
      *
      * @param userInput command given by the user.
-     * @return response task generated.
+     * @return response task generated or error message if error occur.
      */
     public String run(String userInput) {
-        String response = "";
-        String type = Parser.parse(userInput);
         try {
-            checkCommand(userInput);
-        } catch (StickiemCommandException e) {
-            return e.getMessage();
-        }
-
-        switch (type) {
-        case "bye" -> {
-            response = "";
-        }
-        case "list" -> {
-            response = this.taskList.getTaskDetails();
-        }
-        case "mark" -> {
-            String[] details = userInput.split(" ");
-            int index = Integer.parseInt(details[1]) - 1;
-            Task currentTask = this.taskList.getTask(index);
-            if (userInput.contains("unmark")) {
-                currentTask.unmarkStatus();
-                response += "OK, I've marked this task as not done yet:";
-
-            } else {
-                currentTask.markStatus();
-                response += "Nice! I've marked this task as done:";
-            }
-            this.save.save(this.taskList.convertCommand());
-            response += "\n" + currentTask.getDetails();
-        }
-        case "delete" -> {
-            String[] details = userInput.split(" ");
-            int index = Integer.parseInt(details[1]) - 1;
-            response = this.taskList.removeTask(index);
-            this.save.save(this.taskList.convertCommand());
-
-        }
-        case "add" -> {
+            String response = "";
+            String type = Parser.parse(userInput);
             try {
-                Task currentTask = createTask(userInput);
-                response = taskList.addTask(currentTask);
-                this.save.save(this.taskList.convertCommand());
-
+                checkCommand(userInput);
             } catch (StickiemCommandException e) {
                 return e.getMessage();
             }
+
+            switch (type) {
+            case "bye" -> {
+                response = "";
+            }
+            case "list" -> {
+                response = this.taskList.getTaskDetails();
+            }
+            case "mark" -> {
+                String[] details = userInput.split(" ");
+                int index = Integer.parseInt(details[1]) - 1;
+                Task currentTask = this.taskList.getTask(index);
+                if (userInput.contains("unmark")) {
+                    currentTask.unmarkStatus();
+                    response += "OK, I've marked this task as not done yet:";
+
+                } else {
+                    currentTask.markStatus();
+                    response += "Nice! I've marked this task as done:";
+                }
+                this.save.save(this.taskList.convertCommand());
+                response += "\n" + currentTask.getDetails();
+            }
+            case "delete" -> {
+                String[] details = userInput.split(" ");
+                int index = Integer.parseInt(details[1]) - 1;
+                response = this.taskList.removeTask(index);
+                this.save.save(this.taskList.convertCommand());
+
+            }
+            case "add" -> {
+                try {
+                    Task currentTask = createTask(userInput);
+                    response = taskList.addTask(currentTask);
+                    this.save.save(this.taskList.convertCommand());
+
+                } catch (StickiemCommandException e) {
+                    return e.getMessage();
+                }
+            }
+            case "find" -> {
+                int index = userInput.indexOf("find");
+                String keyword = userInput.substring(index + 5);
+
+
+                response = "Here are the matching tasks in your list:" + new TaskList(taskList.getTasks(keyword)).getTaskDetails();
+
+
+            }
+            case "remind" -> {
+                response = "Here are some of your uncompleted tasks reminders:" + taskList.getUnmarked();
+            }
+            default -> {
+                response = "Invalid command";
+            }
+            }
+
+
+            return response;
+        } catch (Exception e) {
+            return e.getMessage();
         }
-        case "find" -> {
-            int index = userInput.indexOf("find");
-            String keyword = userInput.substring(index + 5);
-
-
-            response = "Here are the matching tasks in your list:" + new TaskList(taskList.getTasks(keyword)).getTaskDetails();
-
-
-        }
-        case "remind" -> {
-            response = "Here are some of your uncompleted tasks reminders:" + taskList.getUnmarked();
-        }
-        default -> {
-            response = "Invalid command";
-        }
-        }
-
-
-        return response;
     }
 
 
