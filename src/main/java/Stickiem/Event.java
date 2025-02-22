@@ -2,12 +2,13 @@ package stickiem;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 /**
  * Represents task with time period.
  */
 public class Event extends Task {
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
 
     public Event(String name, String startDate, String endDate, boolean status) {
         super(name, status);

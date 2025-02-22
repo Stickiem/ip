@@ -11,7 +11,7 @@ import java.util.Scanner;
  * Deals with memory.
  */
 public class Save {
-    private File file;
+    private final File file;
 
     public Save(String filePath) {
 
@@ -27,7 +27,6 @@ public class Save {
         assert file.exists();
 
 
-
     }
 
     public void save(ArrayList<String> details) {
@@ -36,7 +35,7 @@ public class Save {
 
             FileWriter fw = new FileWriter(file);
             String input = "";
-            for(String detail : details) {
+            for (String detail : details) {
 
                 input += detail + System.lineSeparator();
             }

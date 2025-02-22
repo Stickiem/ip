@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
  * Represents task with deadlines.
  */
 public class Deadline extends Task {
-    private LocalDate endDate;
+    private final LocalDate endDate;
 
     public Deadline(String name, String endDate, boolean status) {
         super(name, status);
@@ -18,7 +18,7 @@ public class Deadline extends Task {
     @Override
     public String getDetails() {
         String marking = this.isDone ? "X" : " ";
-        return "[D][" + marking + "] " + this.name + "(by: "+ this.endDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+        return "[D][" + marking + "] " + this.name + "(by: " + this.endDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
     @Override
@@ -31,7 +31,7 @@ public class Deadline extends Task {
     public String getCommand() {
         String marking = isDone ? "X" : "";
         return marking + " " + this.getType() + " " + this.name + "/by " + this.endDate.toString();
-        
+
     }
 
 }

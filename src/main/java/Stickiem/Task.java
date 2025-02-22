@@ -11,9 +11,11 @@ public class Task {
         this.name = name;
         this.isDone = isDone;
     }
+
     public String getName() {
         return this.name;
     }
+
     public void unmarkStatus() {
         this.isDone = false;
     }

@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Stickiem stickiem = new Stickiem("stickiem.txt");
+    private final Stickiem stickiem = new Stickiem("stickiem.txt");
 
     @Override
     public void start(Stage stage) {

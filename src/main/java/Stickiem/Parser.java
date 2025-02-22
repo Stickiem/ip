@@ -24,9 +24,9 @@ public class Parser {
             type = "delete";
         } else if (command.contains("todo") || command.contains("deadline") || command.contains("event")) {
             type = "add";
-        } else if(command.contains("find")) {
+        } else if (command.contains("find")) {
             type = "find";
-        } else if(command.contains("reminder")) {
+        } else if (command.contains("reminder")) {
             type = "remind";
         }
 

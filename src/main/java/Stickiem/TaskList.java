@@ -3,7 +3,8 @@ package stickiem;
 import java.util.ArrayList;
 
 public class TaskList {
-    private ArrayList<Task> tasks;
+    private final ArrayList<Task> tasks;
+
     public TaskList() {
 
         this.tasks = new ArrayList<Task>();
@@ -37,7 +38,7 @@ public class TaskList {
         for (int i = 0; i < len; i++) {
             int index = i + 1;
             Task currentTask = tasks.get(i);
-            if(currentTask.getMarkStatus() == false) {
+            if (!currentTask.getMarkStatus()) {
                 output += "\n" + index + "." + currentTask.getDetails();
             }
 
@@ -66,8 +67,8 @@ public class TaskList {
 
     public ArrayList<Task> getTasks(String keyword) {
         ArrayList<Task> tasks = new ArrayList<Task>();
-        for(Task task : this.tasks) {
-            if(task.getName().contains(keyword)) {
+        for (Task task : this.tasks) {
+            if (task.getName().contains(keyword)) {
                 tasks.add(task);
             }
         }
@@ -76,7 +77,7 @@ public class TaskList {
 
     public ArrayList<String> convertCommand() {
         ArrayList<String> commands = new ArrayList<String>();
-        for(int i = 0; i < this.tasks.size(); i++) {
+        for (int i = 0; i < this.tasks.size(); i++) {
             commands.add(this.tasks.get(i).getCommand());
         }
         return commands;
